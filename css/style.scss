@@ -1,0 +1,179 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
+  url('../fonts/Roboto-Medium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+$brand-white:                  #ffffff;
+$brand-black:                  #000000;
+$text-color:                   #3d3d3d;
+$dropdown-bg:                  #f2f2f2;
+$background-bg:                rgba(0, 0, 0, 0.7);
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+.container {
+  max-width: 1232px;
+  margin: 0 auto;
+}
+
+.ozitag {
+  min-height: 100vh;
+
+  &.black-bg {
+    background: $background-bg;
+  }
+
+  &__content {
+    padding-top: 2rem;
+
+    p {
+
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+
+  &__nav {
+    background-color: $brand-white;
+    border-bottom: 1px solid $brand-black;
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      color: $text-color;
+    }
+  }
+
+  &__navlist {
+    display: flex;
+    position: relative;
+  }
+
+  &__navitem {
+    padding: 1rem 1.5rem 2rem;
+    font-size: 16px;
+
+    &:first-child {
+      padding-left: 3rem;
+    }
+
+    .ozitag__link {
+      padding: 1rem 0 2rem;
+
+      &:hover + .dropdown-content {
+        max-height: 1000px;
+        opacity: 1;
+      }
+
+      &:hover ~ .bg {
+        opacity: 1;
+        width: 100vw;
+      }
+    }
+  }
+
+  .bg {
+    opacity: 0;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    transition: opacity .2s ease-in-out;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    background-color: $background-bg;
+  }
+
+  .dropdown-content {
+    display: flex;
+    opacity: 0;
+    transition: max-height .2s ease-in-out;
+    background-color: $dropdown-bg;
+    padding: 1.5rem 2rem 2rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 0;
+
+    &:hover {
+      max-height: 1000px;
+      opacity: 1;
+
+      &+ .bg {
+        opacity: 1;
+        width: 100vw;
+      }
+    }
+
+    &.level-2 {
+      justify-content: space-between;
+
+      .item-2 {
+        padding: 0;
+      }
+    }
+
+    .item-2 {
+      padding: 0 3rem;
+
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  .level-3 {
+    padding-top: 1rem;
+  }
+
+  .item-2 {
+    font-size: 18px;
+  }
+
+  .item-3 {
+    font-size: 15px;
+    margin-bottom: 0.7rem;
+  }
+}
+
+.ozitag__navitem {
+
+  a {
+
+    &:hover {
+
+      .ozitag__content {
+        background: $background-bg;
+      }
+    }
+  }
+}
+
+
+
+
+
