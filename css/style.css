@@ -1,7 +1,14 @@
 @font-face {
-  font-family: "Roboto";
+  font-family: "Roboto-Medium";
   src: url("../fonts/Roboto-Medium.woff2") format("woff2"), url("../fonts/Roboto-Medium.woff") format("woff");
   font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto-Regular";
+  src: url("../fonts/Roboto-Regular.woff2") format("woff2"), url("../fonts/Roboto-Regular.woff") format("woff");
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
@@ -14,20 +21,21 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
+  font-family: "Roboto-Regular", sans-serif;
+  font-weight: 400;
 }
 
 .container {
-  max-width: 1232px;
+  max-width: 1264px;
   margin: 0 auto;
 }
 
 .ozitag {
   min-height: 100vh;
 }
-.ozitag.black-bg {
-  background: rgba(0, 0, 0, 0.7);
+.ozitag.bg-res {
+  background-color: rgba(0, 0, 0, 0.7);
+  transition: background-color 0.2s ease-in-out;
 }
 .ozitag__content {
   padding-top: 2rem;
@@ -36,8 +44,11 @@ body {
   margin-bottom: 1rem;
 }
 .ozitag__nav {
+  font-family: "Roboto-Medium", sans-serif;
+  font-weight: 500;
   background-color: #ffffff;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #c2c2c2;
+  box-shadow: 0 0px 15px -1px grey;
 }
 .ozitag__nav ul {
   list-style: none;
@@ -46,9 +57,15 @@ body {
   text-decoration: none;
   color: #3d3d3d;
 }
+.ozitag__navwrap {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  position: relative;
+}
 .ozitag__navlist {
   display: flex;
-  position: relative;
+  align-items: center;
 }
 .ozitag__navitem {
   padding: 1rem 1.5rem 2rem;
@@ -57,17 +74,76 @@ body {
 .ozitag__navitem:first-child {
   padding-left: 3rem;
 }
-.ozitag__navitem .ozitag__link {
-  padding: 1rem 0 2rem;
+.ozitag__navitem.dropdown:hover .ozitag__link:after {
+  width: 100%;
+  left: 0;
 }
-.ozitag__navitem .ozitag__link:hover + .dropdown-content {
+.ozitag__navitem.dropdown:hover .dropdown-content {
+  max-height: 1000px;
   opacity: 1;
+  display: flex;
 }
-.ozitag__navitem .ozitag__link:hover ~ .bg {
+.ozitag__navitem.dropdown:hover .bg {
   opacity: 1;
   width: 100vw;
 }
-.ozitag .bg {
+.ozitag__navitem .ozitag__link {
+  position: relative;
+  padding: 1rem 0 2rem;
+}
+.ozitag__navitem .ozitag__link:after {
+  background: none repeat scroll 0 0 #ff9c24;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.ozitag__navitem .dropdown-content {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  background-color: #f2f2f2;
+  padding: 1.5rem 2rem 2rem;
+  position: absolute;
+  top: 68px;
+  left: 0;
+  width: 100%;
+  max-height: 0;
+}
+.ozitag__navitem .dropdown-content a {
+  transition: all 0.1s ease-in;
+}
+.ozitag__navitem .dropdown-content a:hover {
+  color: #ff9c24;
+}
+.ozitag__navitem .dropdown-content.level-2 {
+  justify-content: space-between;
+}
+.ozitag__navitem .dropdown-content.level-2 .item-2 {
+  padding: 0;
+}
+.ozitag__navitem .dropdown-content .level-3 {
+  padding-top: 1rem;
+}
+.ozitag__navitem .dropdown-content .item-2 {
+  padding: 0 3rem;
+  font-size: 18px;
+}
+.ozitag__navitem .dropdown-content .item-2:first-child {
+  padding-left: 0;
+}
+.ozitag__navitem .dropdown-content .item-2:last-child {
+  padding-right: 0;
+}
+.ozitag__navitem .dropdown-content .item-3 {
+  font-size: 15px;
+  margin-bottom: 0.7rem;
+}
+.ozitag__navitem .bg {
   opacity: 0;
   position: fixed;
   z-index: -1;
@@ -78,52 +154,143 @@ body {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
 }
-.ozitag .dropdown-content {
-  display: flex;
-  opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-  background-color: #f2f2f2;
-  padding: 1.5rem 2rem 2rem;
+.ozitag__burger {
+  z-index: 10;
+  margin-right: 1rem;
+  display: none;
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  justify-content: center;
+  align-items: center;
+}
+.ozitag__burger.active .ozitag__burger-icon {
+  background-color: transparent;
+}
+.ozitag__burger.active .ozitag__burger-icon:before {
+  background-color: #ff9c24;
+  transform: translateY(0) rotate(-45deg);
+}
+.ozitag__burger.active .ozitag__burger-icon:after {
+  background-color: #ff9c24;
+  transform: translateY(0) rotate(45deg);
+}
+.ozitag__burger-icon {
+  position: relative;
+  width: 1.6rem;
+  height: 4px;
+  background-color: #000000;
+  transition: all 0.25s ease-in-out;
+}
+.ozitag__burger-icon:before, .ozitag__burger-icon:after {
+  content: "";
   position: absolute;
-  top: 100%;
+  width: inherit;
+  height: inherit;
+  background-color: #000000;
   left: 0;
-  width: 100%;
+  transition: all 0.25s ease-in-out;
 }
-.ozitag .dropdown-content:hover {
-  opacity: 1;
+.ozitag__burger-icon:before {
+  transform: translateY(-8px);
 }
-.ozitag .dropdown-content:hover + .bg {
-  opacity: 1;
-  width: 100vw;
+.ozitag__burger-icon:after {
+  transform: translateY(8px);
 }
-.ozitag .dropdown-content.level-2 {
-  justify-content: space-between;
-}
-.ozitag .dropdown-content.level-2 .item-2 {
-  padding: 0;
-}
-.ozitag .dropdown-content .item-2 {
-  padding: 0 3rem;
-}
-.ozitag .dropdown-content .item-2:first-child {
-  padding-left: 0;
-}
-.ozitag .dropdown-content .item-2:last-child {
-  padding-right: 0;
-}
-.ozitag .level-3 {
-  padding-top: 1rem;
-}
-.ozitag .item-2 {
-  font-size: 18px;
-}
-.ozitag .item-3 {
-  font-size: 15px;
-  margin-bottom: 0.7rem;
-}
-
-.ozitag__navitem a:hover .ozitag__content {
-  background: rgba(0, 0, 0, 0.7);
+@media (max-width: 1024px) {
+  .ozitag__navwrap {
+    justify-content: flex-end;
+    position: relative;
+    border-bottom: 1px solid #c2c2c2;
+    box-shadow: 0 0px 15px -1px grey;
+  }
+  .ozitag__navlist {
+    display: block;
+    opacity: 0;
+    padding-bottom: 1rem;
+    position: fixed;
+    background-color: #ffffff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    justify-content: flex-end;
+    top: 68px;
+    left: 0;
+    width: 100%;
+    transition: max-height 0.2s ease-in-out;
+    max-height: 0;
+  }
+  .ozitag__navlist.show {
+    opacity: 1;
+    max-height: 100vh;
+  }
+  .ozitag__navitem {
+    padding: 1rem 1.5rem;
+  }
+  .ozitag__navitem:first-child {
+    padding-left: 1.5rem;
+  }
+  .ozitag__navitem.dropdown, .ozitag__navitem.dropdown:hover {
+    padding: 1rem 0;
+    border: none;
+  }
+  .ozitag__navitem.dropdown.open, .ozitag__navitem.dropdown:hover.open {
+    padding: 1rem 0 0 0;
+  }
+  .ozitag__navitem.dropdown .dropdown-content, .ozitag__navitem.dropdown:hover .dropdown-content {
+    margin-top: 1rem;
+    border-top: 1px solid #c2c2c2;
+    padding: 0;
+    max-height: 1000px;
+    opacity: 1;
+    display: block;
+    position: unset;
+  }
+  .ozitag__navitem.dropdown .dropdown-content > .item-2, .ozitag__navitem.dropdown:hover .dropdown-content > .item-2 {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #c2c2c2;
+  }
+  .ozitag__navitem.dropdown .ozitag__link, .ozitag__navitem.dropdown:hover .ozitag__link {
+    padding: 1rem 0 1rem 1.5rem;
+    transition: all 0.1s ease-in;
+  }
+  .ozitag__navitem.dropdown .ozitag__link:hover, .ozitag__navitem.dropdown:hover .ozitag__link:hover {
+    color: #ff9c24;
+  }
+  .ozitag__navitem.dropdown .ozitag__link:after, .ozitag__navitem.dropdown:hover .ozitag__link:after {
+    display: none;
+  }
+  .ozitag__navitem.dropdown .level-2 .item-2, .ozitag__navitem.dropdown:hover .level-2 .item-2 {
+    padding: 1rem 0;
+    font-size: 16px;
+  }
+  .ozitag__navitem.dropdown .level-2 .item-2 a, .ozitag__navitem.dropdown:hover .level-2 .item-2 a {
+    padding-left: 1.5rem;
+  }
+  .ozitag__navitem.dropdown .level-3, .ozitag__navitem.dropdown:hover .level-3 {
+    margin-top: 1rem;
+    padding: 0;
+  }
+  .ozitag__navitem.dropdown .level-3 .item-3, .ozitag__navitem.dropdown:hover .level-3 .item-3 {
+    margin: 0;
+    padding: 1rem 1rem;
+    border-top: 1px solid #c2c2c2;
+    font-size: 16px;
+  }
+  .ozitag__navitem.dropdown .level-3 .item-3:last-child, .ozitag__navitem.dropdown:hover .level-3 .item-3:last-child {
+    padding-bottom: 0;
+  }
+  .ozitag__navitem .bg {
+    display: none;
+  }
+  .ozitag__link {
+    transition: all 0.1s ease-in;
+  }
+  .ozitag__link:hover {
+    color: #ff9c24;
+  }
+  .ozitag__burger {
+    display: flex;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

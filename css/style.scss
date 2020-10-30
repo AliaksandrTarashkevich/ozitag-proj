@@ -1,5 +1,5 @@
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Roboto-Medium';
   src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
   url('../fonts/Roboto-Medium.woff') format('woff');
   font-weight: normal;
@@ -7,11 +7,29 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Roboto-Regular';
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
+  url('../fonts/Roboto-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+$brand-1:                      #ff9c24;
 $brand-white:                  #ffffff;
 $brand-black:                  #000000;
 $text-color:                   #3d3d3d;
 $dropdown-bg:                  #f2f2f2;
 $background-bg:                rgba(0, 0, 0, 0.7);
+$border-color:                 #c2c2c2;
+
+$screen-xs-max:                 480px;
+$screen-sm-max:                 768px;
+$screen-md-max:                 1024px;
+$screen-lg-max:                 1200px;
+
+$container-max-width:           1264px;
 
 *,
 *:before,
@@ -22,20 +40,21 @@ $background-bg:                rgba(0, 0, 0, 0.7);
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
+  font-family: 'Roboto-Regular', sans-serif;
+  font-weight: 400;
 }
 
 .container {
-  max-width: 1232px;
+  max-width: $container-max-width;
   margin: 0 auto;
 }
 
 .ozitag {
   min-height: 100vh;
 
-  &.black-bg {
-    background: $background-bg;
+  &.bg-res {
+    background-color: $background-bg;
+    transition: background-color .2s ease-in-out;
   }
 
   &__content {
@@ -50,8 +69,11 @@ body {
   }
 
   &__nav {
+    font-family: 'Roboto-Medium', sans-serif;
+    font-weight: 500;
     background-color: $brand-white;
-    border-bottom: 1px solid $brand-black;
+    border-bottom: 1px solid $border-color;
+    box-shadow: 0 0px 15px -1px grey;
 
     ul {
       list-style: none;
@@ -63,9 +85,16 @@ body {
     }
   }
 
+  &__navwrap {
+    display: flex;
+    min-height: 68px;
+    align-items: center;
+    position: relative;
+  }
+
   &__navlist {
     display: flex;
-    position: relative;
+    align-items: center;
   }
 
   &__navitem {
@@ -76,102 +105,289 @@ body {
       padding-left: 3rem;
     }
 
+    &.dropdown {
+
+      &:hover {
+
+        .ozitag__link {
+
+          &:after {
+            width: 100%;
+            left: 0;
+          }
+        }
+
+        .dropdown-content {
+          max-height: 1000px;
+          opacity: 1;
+          display: flex;
+        }
+
+        .bg {
+          opacity: 1;
+          width: 100vw;
+        }
+      }
+    }
+
     .ozitag__link {
+      position: relative;
       padding: 1rem 0 2rem;
 
-      &:hover + .dropdown-content {
-        max-height: 1000px;
-        opacity: 1;
-      }
-
-      &:hover ~ .bg {
-        opacity: 1;
-        width: 100vw;
-      }
-    }
-  }
-
-  .bg {
-    opacity: 0;
-    position: fixed;
-    z-index: -1;
-    top: 0;
-    transition: opacity .2s ease-in-out;
-    left: 0;
-    width: 0;
-    height: 100vh;
-    background-color: $background-bg;
-  }
-
-  .dropdown-content {
-    display: flex;
-    opacity: 0;
-    transition: max-height .2s ease-in-out;
-    background-color: $dropdown-bg;
-    padding: 1.5rem 2rem 2rem;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-height: 0;
-
-    &:hover {
-      max-height: 1000px;
-      opacity: 1;
-
-      &+ .bg {
-        opacity: 1;
-        width: 100vw;
+      &:after {
+        background: none repeat scroll 0 0 $brand-1;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
       }
     }
 
-    &.level-2 {
-      justify-content: space-between;
+    .dropdown-content {
+      display: none;
+      opacity: 0;
+      transition: opacity .2s ease-in-out;
+      background-color: $dropdown-bg;
+      padding: 1.5rem 2rem 2rem;
+      position: absolute;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      max-height: 0;
+
+      a {
+        transition: all .1s ease-in;
+
+        &:hover {
+          color: $brand-1;
+        }
+      }
+
+      &.level-2 {
+        justify-content: space-between;
+
+        .item-2 {
+          padding: 0;
+        }
+      }
+
+      .level-3 {
+        padding-top: 1rem;
+      }
 
       .item-2 {
-        padding: 0;
+        padding: 0 3rem;
+        font-size: 18px;
+
+        &:first-child {
+          padding-left: 0;
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      .item-3 {
+        font-size: 15px;
+        margin-bottom: 0.7rem;
       }
     }
 
-    .item-2 {
-      padding: 0 3rem;
+    .bg {
+      opacity: 0;
+      position: fixed;
+      z-index: -1;
+      top: 0;
+      transition: opacity .2s ease-in-out;
+      left: 0;
+      width: 0;
+      height: 100vh;
+      background-color: $background-bg;
+    }
+  }
+
+  &__burger {
+    z-index: 10;
+    margin-right: 1rem;
+    display: none;
+    cursor: pointer;
+    width: 2.5rem;
+    height: 2.5rem;
+    justify-content: center;
+    align-items: center;
+
+    &.active {
+
+      .ozitag__burger-icon {
+        background-color: transparent;
+
+        &:before {
+          background-color: $brand-1;
+          transform: translateY(0) rotate(-45deg);
+        }
+
+        &:after {
+          background-color: $brand-1;
+          transform: translateY(0) rotate(45deg);
+        }
+      }
+    }
+
+    &-icon {
+      position: relative;
+      width: 1.6rem;
+      height: 4px;
+      background-color: $brand-black;
+      transition: all .25s ease-in-out;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        width: inherit;
+        height: inherit;
+        background-color: $brand-black;
+        left: 0;
+        transition: all .25s ease-in-out;
+      }
+
+      &:before {
+        transform: translateY(-8px);
+      }
+
+      &:after {
+        transform: translateY(8px);
+      }
+    }
+  }
+  
+  @media (max-width: $screen-md-max) {
+
+    &__navwrap {
+      justify-content: flex-end;
+      position: relative;
+      border-bottom: 1px solid $border-color;
+      box-shadow: 0 0px 15px -1px grey;
+    }
+
+    &__navlist {
+      display: block;
+      opacity: 0;
+      padding-bottom: 1rem;
+      position: fixed;
+      background-color: $brand-white;
+      overflow-y: auto;
+      overflow-x: hidden;
+      justify-content: flex-end;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      transition: max-height .2s ease-in-out;
+      max-height: 0;
+      
+      &.show {
+        opacity: 1;
+        max-height: 100vh;
+      }
+    }
+
+    &__navitem {
+      padding: 1rem 1.5rem;
 
       &:first-child {
-        padding-left: 0;
+        padding-left: 1.5rem;
       }
 
-      &:last-child {
-        padding-right: 0;
+      &.dropdown,
+      &.dropdown:hover {
+        padding: 1rem 0;
+        border: none;
+
+        &.open {
+          padding: 1rem 0 0 0;
+        }
+
+        .dropdown-content {
+          margin-top: 1rem;
+          border-top: 1px solid $border-color;
+          padding: 0;
+          max-height: 1000px;
+          opacity: 1;
+          display: block;
+          position: unset;
+
+          > .item-2 {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid $border-color;
+          }
+        }
+
+        .ozitag__link {
+          padding: 1rem 0 1rem 1.5rem;
+          transition: all .1s ease-in;
+
+          &:hover {
+            color: $brand-1;
+          }
+
+          &:after {
+            display: none;
+          }
+        }
+
+        .level-2 {
+
+          .item-2 {
+            padding: 1rem 0;
+            font-size: 16px;
+
+            a {
+              padding-left: 1.5rem;
+            }
+          }
+        }
+
+        .level-3 {
+          margin-top: 1rem;
+          padding: 0;
+
+          .item-3 {
+            margin: 0;
+            padding: 1rem 1rem;
+            border-top: 1px solid $border-color;
+            font-size: 16px;
+
+            &:last-child {
+              padding-bottom: 0;
+            }
+          }
+        }
+      }
+
+      .bg {
+        display: none;
       }
     }
-  }
 
-  .level-3 {
-    padding-top: 1rem;
-  }
+    &__link {
+      transition: all .1s ease-in;
 
-  .item-2 {
-    font-size: 18px;
-  }
+      &:hover {
+        color: $brand-1;
+      }
+    }
 
-  .item-3 {
-    font-size: 15px;
-    margin-bottom: 0.7rem;
+    &__burger {
+      display: flex;
+    }
   }
 }
 
-.ozitag__navitem {
-
-  a {
-
-    &:hover {
-
-      .ozitag__content {
-        background: $background-bg;
-      }
-    }
-  }
-}
 
 
 
