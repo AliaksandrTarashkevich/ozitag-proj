@@ -75,7 +75,7 @@ body {
   padding-left: 3rem;
 }
 .ozitag__navitem.dropdown .wrap {
-  display: flex;
+  display: block;
   justify-content: space-between;
   align-items: center;
   padding-right: 2rem;
@@ -242,6 +242,12 @@ body {
   .ozitag__navitem.dropdown, .ozitag__navitem.dropdown:hover {
     padding: 1rem 0;
     border: none;
+  }
+  .ozitag__navitem.dropdown .wrap, .ozitag__navitem.dropdown:hover .wrap {
+    display: flex;
+  }
+  .ozitag__navitem.dropdown .wrap .ozitag__link, .ozitag__navitem.dropdown:hover .wrap .ozitag__link {
+    padding: 0 0 0 1.5rem;
   }
   .ozitag__navitem.dropdown .wrap .fas, .ozitag__navitem.dropdown:hover .wrap .fas {
     display: block;
