@@ -107,6 +107,18 @@ body {
 
     &.dropdown {
 
+      .wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-right: 2rem;
+
+        .fas {
+          cursor: pointer;
+          display: none;
+        }
+      }
+
       &:hover {
 
         .ozitag__link {
@@ -308,16 +320,30 @@ body {
         padding: 1rem 0;
         border: none;
 
+        .wrap {
+
+          .fas {
+            display: block;
+          }
+        }
+
         &.open {
           padding: 1rem 0 0 0;
+
+          .dropdown-content {
+            margin-top: 1rem;
+            max-height: 1000px;
+            opacity: 1;
+          }
         }
 
         .dropdown-content {
-          margin-top: 1rem;
+          margin-top: 0;
+          max-height: 0;
+          overflow: hidden;
           border-top: 1px solid $border-color;
           padding: 0;
-          max-height: 1000px;
-          opacity: 1;
+          opacity: 0;
           display: block;
           position: unset;
 

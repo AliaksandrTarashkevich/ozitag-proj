@@ -74,6 +74,16 @@ body {
 .ozitag__navitem:first-child {
   padding-left: 3rem;
 }
+.ozitag__navitem.dropdown .wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 2rem;
+}
+.ozitag__navitem.dropdown .wrap .fas {
+  cursor: pointer;
+  display: none;
+}
 .ozitag__navitem.dropdown:hover .ozitag__link:after {
   width: 100%;
   left: 0;
@@ -233,15 +243,24 @@ body {
     padding: 1rem 0;
     border: none;
   }
+  .ozitag__navitem.dropdown .wrap .fas, .ozitag__navitem.dropdown:hover .wrap .fas {
+    display: block;
+  }
   .ozitag__navitem.dropdown.open, .ozitag__navitem.dropdown:hover.open {
     padding: 1rem 0 0 0;
   }
-  .ozitag__navitem.dropdown .dropdown-content, .ozitag__navitem.dropdown:hover .dropdown-content {
+  .ozitag__navitem.dropdown.open .dropdown-content, .ozitag__navitem.dropdown:hover.open .dropdown-content {
     margin-top: 1rem;
-    border-top: 1px solid #c2c2c2;
-    padding: 0;
     max-height: 1000px;
     opacity: 1;
+  }
+  .ozitag__navitem.dropdown .dropdown-content, .ozitag__navitem.dropdown:hover .dropdown-content {
+    margin-top: 0;
+    max-height: 0;
+    overflow: hidden;
+    border-top: 1px solid #c2c2c2;
+    padding: 0;
+    opacity: 0;
     display: block;
     position: unset;
   }
