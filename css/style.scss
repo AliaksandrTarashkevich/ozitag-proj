@@ -108,12 +108,14 @@ body {
     &.dropdown {
 
       .wrap {
+        position: relative;
         display: block;
-        justify-content: space-between;
-        align-items: center;
-        padding-right: 2rem;
 
         .fas {
+          position: absolute;
+          top: 5px;
+          right: 10px;
+          transform: translateY(-50%);
           cursor: pointer;
           display: none;
         }
@@ -321,7 +323,6 @@ body {
         border: none;
 
         .wrap {
-          display: flex;
 
           .ozitag__link {
             padding: 0 0 0 1.5rem;
@@ -329,32 +330,41 @@ body {
 
           .fas {
             display: block;
-          }
-        }
-
-        &.open {
-          padding: 1rem 0 0 0;
-
-          .dropdown-content {
-            margin-top: 1rem;
-            max-height: 1000px;
-            opacity: 1;
+            font-size: 19px;
+            transition: transform .2s ease-in-out;
           }
         }
 
         .dropdown-content {
-          margin-top: 0;
-          max-height: 0;
           overflow: hidden;
           border-top: 1px solid $border-color;
-          padding: 0;
-          opacity: 0;
           display: block;
           position: unset;
+
+          &.open {
+            margin-top: 1rem;
+          }
 
           > .item-2 {
             padding: 1rem 1.5rem;
             border-bottom: 1px solid $border-color;
+          }
+        }
+
+        .level-2,
+        .level-3 {
+          margin-top: 0;
+          max-width: 0;
+          max-height: 0;
+          transition: max-height .2s;
+          opacity: 0;
+          padding: 0;
+
+          &.opened {
+            max-width: 100%;
+            margin-top: 1rem;
+            max-height: 1000px;
+            opacity: 1;
           }
         }
 
@@ -384,8 +394,6 @@ body {
         }
 
         .level-3 {
-          margin-top: 1rem;
-          padding: 0;
 
           .item-3 {
             margin: 0;
@@ -418,9 +426,3 @@ body {
     }
   }
 }
-
-
-
-
-
-
