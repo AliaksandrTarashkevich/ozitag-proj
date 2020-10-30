@@ -25,12 +25,13 @@ iconDrop.forEach(item => {
         let parent = item.parentElement;
         let accord = parent.nextElementSibling;
         accord.classList.toggle('opened');
+        item.classList.toggle('opened')
 
-        if(item.style.transform = 'rotate(0deg)') {
-            item.style.transform = 'rotate(-45deg)';
-        } else if(item.style.transform = 'rotate(-45deg)') {
-            item.style.transform = 'none';
-        }
+        // if(item.style.transform = 'rotate(0deg)') {
+        //     item.style.transform = 'rotate(-45deg)';
+        // } else if(item.style.transform = 'rotate(-45deg)') {
+        //     item.style.transform = 'none';
+        // }
     })
 })
 

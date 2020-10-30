@@ -52,11 +52,6 @@ body {
 .ozitag {
   min-height: 100vh;
 
-  &.bg-res {
-    background-color: $background-bg;
-    transition: background-color .2s ease-in-out;
-  }
-
   &__content {
     padding-top: 2rem;
 
@@ -113,11 +108,16 @@ body {
 
         .fas {
           position: absolute;
-          top: 5px;
+          top: 10px;
           right: 10px;
           transform: translateY(-50%);
+          transition: transform .2s ease-in-out;
           cursor: pointer;
           display: none;
+
+          &.opened {
+            transform: translateY(-50%) rotate(180deg);
+          }
         }
       }
 
@@ -164,7 +164,6 @@ body {
     .dropdown-content {
       display: none;
       opacity: 0;
-      transition: opacity .2s ease-in-out;
       background-color: $dropdown-bg;
       padding: 1.5rem 2rem 2rem;
       position: absolute;
@@ -182,28 +181,23 @@ body {
       }
 
       &.level-2 {
-        justify-content: space-between;
 
         .item-2 {
-          padding: 0;
+          padding: 0 3rem;
+          font-size: 18px;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }
         }
       }
 
       .level-3 {
         padding-top: 1rem;
-      }
-
-      .item-2 {
-        padding: 0 3rem;
-        font-size: 18px;
-
-        &:first-child {
-          padding-left: 0;
-        }
-
-        &:last-child {
-          padding-right: 0;
-        }
       }
 
       .item-3 {
@@ -282,6 +276,11 @@ body {
   
   @media (max-width: $screen-md-max) {
 
+    &.bg-res {
+      background-color: $background-bg;
+      transition: background-color .2s ease-in-out;
+    }
+
     &__navwrap {
       justify-content: flex-end;
       position: relative;
@@ -356,7 +355,7 @@ body {
           margin-top: 0;
           max-width: 0;
           max-height: 0;
-          transition: max-height .2s;
+          transition: max-height .3s;
           opacity: 0;
           padding: 0;
 
