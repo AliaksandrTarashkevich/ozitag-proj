@@ -1,33 +1,38 @@
 const ozi = document.querySelector('.ozitag');
 const burger = document.querySelector('.ozitag__burger');
 const navList = document.querySelector('.ozitag__navlist');
-const iconDrop = document.querySelector('.js-icon-drop');
+const iconDrop = document.querySelectorAll('.js-icon-drop');
 
-const openAccordion = (event) => {
-    let icon = event.target;
-    let wrap = icon.closest('.wrap');
-    let accordion = wrap.querySelector('.accordion');
+// iconDrop.addEventListener('click', openAccordion)
 
-    accordion.classList.toggle('opened');
-    if (icon.style.transform = 'rotate(0)') {
-        icon.style.transform = 'rotate(180deg)';
-    } else if (icon.style.transform = 'rotate(180deg)') {
-        icon.style.transform = 'rotate(0)';
-    }
-    event.preventDefault();
-}
+// const openAccordion = (event) => {
+//     let icon = event.target;
+//     let wrap = icon.closest('.wrap');
+//     let accordion = wrap.querySelector('.accordion');
+//
+//     accordion.classList.toggle('opened');
+//     if (icon.style.transform = 'rotate(0)') {
+//         icon.style.transform = 'rotate(180deg)';
+//     } else if (icon.style.transform = 'rotate(180deg)') {
+//         icon.style.transform = 'rotate(0)';
+//     }
+//     event.preventDefault();
+// }
 
-// iconDrop.forEach(item => {
-//     item.addEventListener('click', () => {
-//         console.log(item);
-//         let parent = item.parentElement;
-//         let accord = parent.nextElementSibling;
-//         accord.classList.toggle('opened');
-//         // rotateIcon(item);
-//     })
-// })
+iconDrop.forEach(item => {
+    item.addEventListener('click', () => {
+        console.log(item);
+        let parent = item.parentElement;
+        let accord = parent.nextElementSibling;
+        accord.classList.toggle('opened');
 
-iconDrop.addEventListener('click', openAccordion)
+        if(item.style.transform = 'rotate(0deg)') {
+            item.style.transform = 'rotate(-45deg)';
+        } else if(item.style.transform = 'rotate(-45deg)') {
+            item.style.transform = 'none';
+        }
+    })
+})
 
 // function rotateIcon(parent) {
 //     console.log(this);
