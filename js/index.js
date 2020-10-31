@@ -17,15 +17,35 @@ const iconDrop = document.querySelectorAll('.js-icon-drop');
 //         icon.style.transform = 'rotate(0)';
 //     }
 //     event.preventDefault();
-// }
+// 
+
+const closeAcc = () => {
+    const openedAcs = document.querySelectorAll('.opened');
+
+    openedAcs.forEach(item => {
+        item.classList.remove('opened');
+
+        if(item.closest('.level-2')) {
+            item.closest('.level-2').classList.add('opened')
+        }
+    })
+}
 
 iconDrop.forEach(item => {
     item.addEventListener('click', () => {
         console.log(item);
+        closeAcc();
         let parent = item.parentElement;
         let accord = parent.nextElementSibling;
+        let activeItem = accord.querySelector('.active');
         accord.classList.toggle('opened');
         item.classList.toggle('opened')
+        activeItem.scrollIntoView({ block: "center", behavior: "smooth" });
+
+        // if (accord.classList.contains('.level-3')) {
+        //     let activeItem = accord.querySelector('.active');
+        //     activeItem.scrollIntoView({ block: "center", behavior: "smooth" });
+        // }
 
         // if(item.style.transform = 'rotate(0deg)') {
         //     item.style.transform = 'rotate(-45deg)';
