@@ -1,52 +1,51 @@
 const ozi = document.querySelector('.ozitag');
 const burger = document.querySelector('.ozitag__burger');
 const navList = document.querySelector('.ozitag__navlist');
+
+
 const iconDrop = document.querySelectorAll('.js-icon-drop');
 
-// iconDrop.addEventListener('click', openAccordion)
+iconDrop.forEach( el => {
 
-// const openAccordion = (event) => {
-//     let icon = event.target;
-//     let wrap = icon.closest('.wrap');
-//     let accordion = wrap.querySelector('.accordion');
-//
-//     accordion.classList.toggle('opened');
-//     if (icon.style.transform = 'rotate(0)') {
-//         icon.style.transform = 'rotate(180deg)';
-//     } else if (icon.style.transform = 'rotate(180deg)') {
-//         icon.style.transform = 'rotate(0)';
-//     }
-//     event.preventDefault();
-// }
+	el.addEventListener('click', () => {
+		openTab(el);
+    })	
 
-iconDrop.forEach(item => {
-    item.addEventListener('click', () => {
-        console.log(item);
-        let parent = item.parentElement;
-        let accord = parent.nextElementSibling;
-        accord.classList.toggle('opened');
-        item.classList.toggle('opened')
+});
 
-        // if(item.style.transform = 'rotate(0deg)') {
-        //     item.style.transform = 'rotate(-45deg)';
-        // } else if(item.style.transform = 'rotate(-45deg)') {
-        //     item.style.transform = 'none';
-        // }
-    })
-})
+function openTab(el){
+	let wrap = el.parentElement;
+	let parentLi = wrap.parentElement;
+	let ulDrop = wrap.nextElementSibling;
+ 
+	if(ulDrop.classList.contains('opened')){
+		parentLi.classList.remove('active');
+		wrap.classList.remove('up');
+		ulDrop.classList.remove('opened');
+	} else {
 
-// function rotateIcon(parent) {
-//     console.log(this);
-//     this = parent;
-//     if (this.style.transform = 'rotate(0deg)') {
-//         this.style.transform = 'rotate(180deg)';
-//     } else {
-//         this.style.transform = 'rotate(0deg)';
-//     }
-// }
+		closeAllTab(parentLi);
+		parentLi.classList.add('active');
+		wrap.classList.add('up');
+		ulDrop.classList.add('opened');
+	}
+}
+
+function closeAllTab(el) {
+
+	const ulDroped = el.parentElement.querySelectorAll('.ul-drop.opened');
+	const activeLi = el.parentElement.querySelectorAll('.dropdown.active');
+
+	activeLi.forEach(elem => {
+		elem.classList.remove('active');
+		elem.children[0].classList.remove('up');
+	})
 
 
-
+	ulDroped.forEach(elem => {
+		elem.classList.remove('opened');
+	})
+}
 
 function bgCheck() {
     if (burger.classList.contains('active')) {

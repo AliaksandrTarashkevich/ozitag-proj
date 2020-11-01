@@ -96,11 +96,64 @@ body {
     padding: 1rem 1.5rem 2rem;
     font-size: 16px;
 
+    &:hover {
+
+      .ozitag__link {
+
+        &:after {
+          width: 100%;
+          left: 0;
+        }
+      }
+    }
+
     &:first-child {
       padding-left: 3rem;
     }
 
     &.dropdown {
+
+      >.ul-drop {
+        display: none;
+        opacity: 0;
+        background-color: $dropdown-bg;
+        padding: 1.5rem 2rem 2rem;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+
+        a {
+          transition: all .1s ease-in;
+
+          &:hover {
+            color: $brand-1;
+          }
+        }
+
+        >li {
+          padding: 0 3rem;
+          font-size: 18px;
+
+          &:first-child {
+            padding-left: 0;
+          }
+
+          &:last-child {
+            padding-right: 0;
+          }
+
+          >.ul-drop {
+            padding-top: 1rem;
+
+            li {
+              font-size: 15px;
+              margin-bottom: 0.7rem;
+            }
+          }
+        }
+      }
 
       .wrap {
         position: relative;
@@ -114,24 +167,12 @@ body {
           transition: transform .2s ease-in-out;
           cursor: pointer;
           display: none;
-
-          &.opened {
-            transform: translateY(-50%) rotate(180deg);
-          }
         }
       }
 
       &:hover {
 
-        .ozitag__link {
-
-          &:after {
-            width: 100%;
-            left: 0;
-          }
-        }
-
-        .dropdown-content {
+        >.ul-drop {
           max-height: 1000px;
           opacity: 1;
           display: flex;
@@ -161,51 +202,6 @@ body {
       }
     }
 
-    .dropdown-content {
-      display: none;
-      opacity: 0;
-      background-color: $dropdown-bg;
-      padding: 1.5rem 2rem 2rem;
-      position: absolute;
-      top: 68px;
-      left: 0;
-      width: 100%;
-      max-height: 0;
-
-      a {
-        transition: all .1s ease-in;
-
-        &:hover {
-          color: $brand-1;
-        }
-      }
-
-      &.level-2 {
-
-        .item-2 {
-          padding: 0 3rem;
-          font-size: 18px;
-
-          &:first-child {
-            padding-left: 0;
-          }
-
-          &:last-child {
-            padding-right: 0;
-          }
-        }
-      }
-
-      .level-3 {
-        padding-top: 1rem;
-      }
-
-      .item-3 {
-        font-size: 15px;
-        margin-bottom: 0.7rem;
-      }
-    }
-
     .bg {
       opacity: 0;
       position: fixed;
@@ -221,15 +217,16 @@ body {
 
   &__burger {
     z-index: 10;
-    margin-right: 1rem;
+    padding-right: 1rem;
     display: none;
     cursor: pointer;
-    width: 2.5rem;
-    height: 2.5rem;
-    justify-content: center;
     align-items: center;
+    height: 64px;
+    width: 100%;
+    justify-content: flex-end;
 
     &.active {
+      border-bottom: 1px solid $border-color;
 
       .ozitag__burger-icon {
         background-color: transparent;
@@ -283,16 +280,17 @@ body {
 
     &__navwrap {
       justify-content: flex-end;
+      flex-direction: column;
       position: relative;
       border-bottom: 1px solid $border-color;
-      box-shadow: 0 0px 15px -1px grey;
+      box-shadow: 0 0 15px -1px grey;
     }
 
     &__navlist {
+      order: 2;
       display: block;
       opacity: 0;
-      padding-bottom: 1rem;
-      position: fixed;
+      position: static;
       background-color: $brand-white;
       overflow-y: auto;
       overflow-x: hidden;
@@ -306,11 +304,81 @@ body {
       &.show {
         opacity: 1;
         max-height: 100vh;
+        overflow: auto;
+      }
+    }
+
+    .ul-drop {
+      transition: transform .3s;
+
+      .wrap {
+        padding-left: 1.5rem;
+
+        .fas {
+          display: block;
+          font-size: 19px;
+          transition: transform .2s ease-in-out;
+        }
+      }
+
+      li {
+        border-top: 1px solid #c2c2c2;
+
+        &:last-child {
+          border-bottom: 1px solid #c2c2c2;
+        }
+
+        &.active {
+          padding-bottom: 0;
+
+          .wrap {
+
+            &.up {
+
+              .js-icon-drop {
+                transform: translateY(-50%) rotate(180deg);
+              }
+            }
+          }
+
+          > .wrap {
+            padding-bottom: 1rem;
+          }
+        }
+
+        &.item-3 {
+          padding-left: 3rem;
+          font-size: 16px;
+          margin-bottom: 0;
+
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+      }
+
+      .ozitag__navitem {
+        border: none;
+
+        &:last-child {
+          border: none;
+        }
       }
     }
 
     &__navitem {
       padding: 1rem 1.5rem;
+      border: none;
+
+      &:hover {
+
+        .ozitag__link {
+
+          &:after {
+            width: 0;
+          }
+        }
+      }
 
       &:first-child {
         padding-left: 1.5rem;
@@ -320,56 +388,64 @@ body {
       &.dropdown:hover {
         padding: 1rem 0;
         border: none;
-
-        .wrap {
-
-          .ozitag__link {
-            padding: 0 0 0 1.5rem;
-          }
-
-          .fas {
-            display: block;
-            font-size: 19px;
-            transition: transform .2s ease-in-out;
-          }
-        }
-
-        .dropdown-content {
-          overflow: hidden;
-          border-top: 1px solid $border-color;
+        
+        .ul-drop {
+          padding: 0;
           display: block;
           position: unset;
-
-          &.open {
-            margin-top: 1rem;
-          }
-
-          > .item-2 {
-            padding: 1rem 1.5rem;
-            border-bottom: 1px solid $border-color;
-          }
-        }
-
-        .level-2,
-        .level-3 {
-          margin-top: 0;
-          max-width: 0;
           max-height: 0;
-          transition: max-height .3s;
           opacity: 0;
-          padding: 0;
+          transition: max-height .2s;
 
           &.opened {
-            max-width: 100%;
-            margin-top: 1rem;
-            max-height: 1000px;
             opacity: 1;
+            max-height: 1200px;
+
+            >li {
+              padding: 1rem 0 1rem 1.5rem;
+              opacity: 1;
+              max-height: 1000px;
+            }
+          }
+
+          li {
+            font-size: 16px;
+            opacity: 0;
+            max-height: 0;
+            transition: max-height .2s;
+
+            &:first-child {
+              padding-left: 1.5rem;
+            }
+          }
+
+          > li {
+            background-color: $dropdown-bg;
+            padding: 0;
+
+            &.dropdown {
+              padding-left: 0;
+            }
+
+            &.active {
+              padding-bottom: 0;
+            }
+
+            .ul-drop {
+              padding: 0;
+
+              li {
+                //font-size: 16px;
+                padding-left: 3rem;
+                margin-bottom: 0;
+              }
+            }
           }
         }
 
         .ozitag__link {
-          padding: 1rem 0 1rem 1.5rem;
-          transition: all .1s ease-in;
+          padding: 0;
+          transition: all .2s ease-in;
 
           &:hover {
             color: $brand-1;
@@ -377,32 +453,6 @@ body {
 
           &:after {
             display: none;
-          }
-        }
-
-        .level-2 {
-
-          .item-2 {
-            padding: 1rem 0;
-            font-size: 16px;
-
-            a {
-              padding-left: 1.5rem;
-            }
-          }
-        }
-
-        .level-3 {
-
-          .item-3 {
-            margin: 0;
-            padding: 1rem 1rem;
-            border-top: 1px solid $border-color;
-            font-size: 16px;
-
-            &:last-child {
-              padding-bottom: 0;
-            }
           }
         }
       }
@@ -413,7 +463,7 @@ body {
     }
 
     &__link {
-      transition: all .1s ease-in;
+      transition: all .2s ease-in;
 
       &:hover {
         color: $brand-1;
