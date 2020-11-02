@@ -12,101 +12,50 @@
 <body>
 
 <div class="ozitag">
-  <div class="ozitag__nav">
+
+  <div class="nav">
     <div class="container">
-      <div class="ozitag__navwrap">
-
-        <div class="ozitag__burger">
-          <div class="ozitag__burger-icon"></div>
-        </div>
-
-        <ul class="ozitag__navlist  ul-drop">
-
-          <li class="ozitag__navitem">
-            <a class="ozitag__link" href="#">Элемент 1</a>
-          </li>
-
-          <li class="ozitag__navitem dropdown">
-            <div class="wrap">
-              <a class="ozitag__link" href="#">Элемент 2</a>
-              <i class="js-icon-drop fas fa-chevron-down"></i>
-            </div>
-
-            <ul class="ul-drop"> 
-
-              <li class="item-2"><a href="#">Элемент 2.1</a></li>
-
-              <li class="dropdown">
-                <div class="wrap">
-                  <a href="#">Элемент 2.2</a>
-                  <i class="js-icon-drop fas fa-chevron-down"></i>
-                </div>
-                <ul class="ul-drop">
-                  <li class="item-3"><a href="#">Элемент 2.2.1</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.2.2</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.2.3</a></li>
-                </ul>
-              </li>
-
-              <li class="item-2"><a href="#">Элемент 2.3</a></li>
-
-              <li class ="dropdown">
-                <div class="wrap">
-                  <a href="#">Элемент 2.4</a>
-                  <i class="js-icon-drop fas fa-chevron-down"></i>
-                </div>
-                <ul class="ul-drop">
-                  <li class="item-3"><a href="#">Элемент 2.4.1</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.2</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.3</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.4</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.5</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.6</a></li>
-                  <li class="item-3"><a href="#">Элемент 2.4.7</a></li>
-                </ul>
-              </li>
-              <li class="item-2"><a href="#">Элемент 2.5</a></li>
-              <li class="item-2"><a href="#">Элемент 2.6</a></li>
-
-            </ul>
-
-            <div class="bg"></div>
-          </li>
-
-          <li class="ozitag__navitem">
-            <a class="ozitag__link" href="#">Элемент 3</a>
-          </li>
-
-          <li class="ozitag__navitem dropdown">
-            <div class="wrap">
-              <a class="ozitag__link" href="#">Элемент 4</a>
-              <i class="js-icon-drop fas fa-chevron-down"></i>
-            </div>
-            <ul class="ul-drop">
-              <li class="item-2">
-                <a href="#">Элемент 4.1</a>
-              </li>
-              <li class="item-2">
-                <a href="#">Элемент 4.2</a>
-              </li>
-            </ul>
-            <div class="bg"></div>
-          </li>
-
-          <li class="ozitag__navitem">
-            <a class="ozitag__link" href="#">Элемент 5</a>
-          </li>
-          <li class="ozitag__navitem">
-            <a class="ozitag__link" href="#">Элемент 6</a>
-          </li>
-
-        </ul>
-
-        <div class="bg-res"></div>
-      </div>
+      <ul class="menu">
+        <li class="item-1"><a href="#">Элемент 1 </a></li>
+        <li class="item-1"><a href="#">Элемент 2</a>
+          <ul class="items level-2">
+            <li class="item-2"> <a href="#" > Элемент 2.1 </a></li>
+            <li class="item-2 list"><a href="#">Элемент 2.2</a>
+              <ul  class="items level-3">
+                <li class="item-3"> <a href="#" > Элемент 2.2.1</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.2.2</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.2.3</a></li>
+              </ul>
+            </li>
+            <li class="item-2"> <a href="#" > Элемент 2.3 </a></li>
+            <li class="item-2 list"><a href="#">Элемент 2.4</a>
+              <ul  class="items level-3">
+                <li class="item-3"> <a href="#" > Элемент 2.4.1</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.2</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.3</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.4</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.5</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.6</a></li>
+                <li class="item-3"> <a href="#" > Элемент 2.4.7</a></li>
+              </ul>
+            </li>
+            <li class="item-2"> <a href="#" > Элемент 2.5 </a></li>
+            <li class="item-2"> <a href="#" > Элемент 2.6 </a></li>
+          </ul>
+        </li>
+        <li class="item-1"><a href="#">Элемент 3</a></li>
+        <li class="item-1 list"><a href="#">Элемент 4</a>
+          <ul class="items level-2">
+            <li class="item-2"> <a href="#" > Элемент 4.1 </a></li>
+            <li class="item-2"> <a href="#" > Элемент 4.2 </a></li>
+          </ul>
+        </li>
+        <li class="item-1"><a href="#">Элемент 5 </a></li>
+        <li class="item-1"><a href="#">Элемент 6 </a></li>
+      </ul>
     </div>
   </div>
-  <div class="ozitag__content">
+  <div class="content">
     <div class="container">
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam beatae deserunt dolor, earum id laudantium
         maiores minus, modi nostrum obcaecati omnis quae quibusdam, repudiandae veniam vero voluptatem voluptates.
