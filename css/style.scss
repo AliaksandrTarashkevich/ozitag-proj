@@ -128,9 +128,11 @@ a {
   .item-2 {
     font-size: 18px;
     padding: 0 3rem;
+    border-bottom: 1px solid $border-color;
 
     &:first-child {
       padding-left: 0;
+      border-top: 1px solid $border-color;
     }
   }
 
@@ -166,7 +168,7 @@ a {
 }
 
 .content {
-  padding-top: 2rem;
+  padding: 2rem 1rem;
 }
 
 @media (max-width: $screen-md-max) {
@@ -207,10 +209,6 @@ a {
     .item-1 {
       padding: 1rem 0 1rem 1.5rem;
 
-      &:first-child {
-        padding: 1rem 0 1rem 1.5rem;
-      }
-
       > a {
         padding: 1rem 0;
         transition: color .2s;
@@ -224,21 +222,94 @@ a {
         }
       }
 
+      &.list {
+        padding-left: 0;
+        padding-bottom: 1rem;
+
+        &.opened {
+          padding-bottom: 0;
+        }
+
+        > a {
+          padding-left: 1.5rem;
+        }
+      }
+
+      &:first-child {
+        padding: 1rem 0 1rem 1.5rem;
+      }
+
       &:hover {
 
         .level-2 {
-          display: block;
+          display: none;
         }
       }
     }
 
     .item-2 {
-      padding: 0;
+      font-size: 16px;
+      padding: 1rem 0 1rem 1.5rem;
+
+      &:first-child {
+        padding-left: 1.5rem;
+      }
+    }
+
+    .item-3 {
+      font-size: 16px;
+      padding: 1rem 2.5rem;
+      border-top: 1px solid $border-color;
+
+      &:not(:last-child) {
+        margin-bottom: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+      }
     }
 
     .level-2 {
-      display: block;
       position: unset;
+      margin-top: 1rem;
+      padding: 0;
+    }
+
+    .level-3 {
+      margin: 0 -1.5rem;
+    }
+  }
+
+  .list {
+    position: relative;
+
+    &.opened {
+
+      > .items {
+
+        .ozitag & {
+          display: block;
+        }
+      }
+
+      > .js-icon-drop {
+        transform: rotate(180deg);
+      }
+    }
+
+    > .js-icon-drop {
+      position: absolute;
+      display: flex;
+      font-size: 19px;
+      transition: all .2s ease-in-out;
+      width: 20px;
+      height: 20px;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      top: 15px;
+      right: 10px;
     }
   }
 
