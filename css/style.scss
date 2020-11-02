@@ -88,19 +88,6 @@ a {
     padding: 1.5rem 1.5rem 2rem;
     font-size: 16px;
 
-    &:hover {
-
-      &:after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: $background-bg;
-      }
-    }
-
     > a {
       padding: 1.5rem 0 2rem;
       position: relative;
@@ -180,4 +167,55 @@ a {
 
 .content {
   padding-top: 2rem;
+}
+
+@media (max-width: $screen-md-max) {
+
+  .nav-wrap {
+    display: block;
+    position: static;
+    border-bottom: 1px solid $border-color;
+    box-shadow: 0 0 15px -1px grey;
+
+    &.opened {
+
+      .menu {
+        opacity: 1;
+        max-height: 2000px;
+      }
+    }
+  }
+
+  .menu {
+    display: block;
+    opacity: 0;
+    max-height: 0;
+    transition: max-height .2s;
+    top: 76px;
+
+    .item-1 {
+      padding: 1rem 0 1rem 1.5rem;
+
+      &:first-child {
+        padding: 1rem 0 1rem 1.5rem;
+      }
+
+      > a {
+        padding: 1rem 0;
+      }
+
+      &:hover {
+
+        .level-2 {
+          //display: block;
+          display: none;
+        }
+      }
+    }
+
+    .level-2 {
+      //display: block;
+      display: none;
+    }
+  }
 }
