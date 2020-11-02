@@ -208,17 +208,15 @@ body {
     transition: background-color 0.2s ease-in-out;
   }
   .ozitag__navwrap {
-    justify-content: flex-end;
-    flex-direction: column;
-    position: relative;
+    display: block;
+    position: static;
     border-bottom: 1px solid #c2c2c2;
     box-shadow: 0 0 15px -1px grey;
   }
   .ozitag__navlist {
-    order: 2;
     display: block;
     opacity: 0;
-    position: static;
+    position: unset;
     background-color: #ffffff;
     overflow-y: auto;
     overflow-x: hidden;
@@ -277,6 +275,9 @@ body {
   .ozitag__navitem {
     padding: 1rem 1.5rem;
     border: none;
+  }
+  .ozitag__navitem .ozitag__link {
+    padding: 0;
   }
   .ozitag__navitem:hover .ozitag__link:after {
     width: 0;
