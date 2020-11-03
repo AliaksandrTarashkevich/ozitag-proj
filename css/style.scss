@@ -65,6 +65,14 @@ a {
 
 /* Main styles */
 
+.ozitag {
+  min-height: 100vh;
+
+  &.bg-res {
+    background-color: $background-bg;
+  }
+}
+
 .nav {
   font-family: 'Roboto-Medium', sans-serif;
   font-weight: 500;
@@ -87,6 +95,31 @@ a {
   .item-1 {
     padding: 1.5rem 1.5rem 2rem;
     font-size: 16px;
+
+    &.list {
+
+      &:after {
+        opacity: 0;
+        max-height: 0;
+        transition: opacity .3s;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: -1;
+        background-color: $background-bg;
+      }
+
+      &:hover {
+
+        &:after {
+          opacity: 1;
+          max-height: 100vh;
+        }
+      }
+    }
 
     > a {
       padding: 1.5rem 0 2rem;
@@ -128,11 +161,9 @@ a {
   .item-2 {
     font-size: 18px;
     padding: 0 3rem;
-    border-bottom: 1px solid $border-color;
 
     &:first-child {
       padding-left: 0;
-      border-top: 1px solid $border-color;
     }
   }
 
@@ -179,11 +210,15 @@ a {
 
   .nav {
     min-height: 76px;
+    position: relative;
+    box-shadow: none;
+    border-bottom: none;
   }
 
   .nav-wrap {
     display: block;
-    position: static;
+    position: absolute;
+    width: 100%;
     border-bottom: 1px solid $border-color;
     box-shadow: 0 0 15px -1px grey;
 
@@ -191,7 +226,7 @@ a {
 
       .menu {
         opacity: 1;
-        max-height: 2000px;
+        max-height: 500px;
       }
     }
   }
@@ -213,22 +248,13 @@ a {
     .item-1 {
       padding: 1rem 0 1rem 1.5rem;
 
-      > a {
-        padding: 1rem 0;
-        transition: color .2s;
-
-        &:hover {
-          color: $brand-1;
-        }
+      &.list {
+        padding-left: 0;
+        padding-bottom: 1rem;
 
         &:after {
           display: none;
         }
-      }
-
-      &.list {
-        padding-left: 0;
-        padding-bottom: 1rem;
 
         &.opened {
           padding-bottom: 0;
@@ -246,6 +272,19 @@ a {
       &:hover {
 
         .level-2 {
+          display: block;
+        }
+      }
+
+      > a {
+        padding: 1rem 0;
+        transition: color .2s;
+
+        &:hover {
+          color: $brand-1;
+        }
+
+        &:after {
           display: none;
         }
       }
@@ -254,9 +293,11 @@ a {
     .item-2 {
       font-size: 16px;
       padding: 1rem 0 1rem 1.5rem;
+      border-bottom: 1px solid $border-color;
 
       &:first-child {
         padding-left: 1.5rem;
+        border-top: 1px solid $border-color;
       }
     }
 
@@ -275,13 +316,25 @@ a {
     }
 
     .level-2 {
+      display: block;
       position: unset;
-      margin-top: 1rem;
+      margin-top: 0;
       padding: 0;
     }
 
     .level-3 {
       margin: 0 -1.5rem;
+      padding-top: 0;
+    }
+  }
+
+  .items {
+    opacity: 0;
+    max-height: 0;
+    transition: max-height .3s;
+
+    li {
+      display: none;
     }
   }
 
@@ -293,8 +346,22 @@ a {
       > .items {
 
         .ozitag & {
-          display: block;
+          opacity: 1;
+          max-height: 1000px;
+          transition: max-height .3s;
+
+          > li {
+            display: block;
+          }
         }
+      }
+
+      > .level-2 {
+        margin-top: 1rem;
+      }
+
+      > .level-3 {
+        padding-top: 1rem;
       }
 
       > .js-icon-drop {
@@ -317,10 +384,6 @@ a {
     }
   }
 
-  .items {
-    display: none;
-  }
-
   .burger {
     z-index: 10;
     padding-right: 1rem;
@@ -332,6 +395,7 @@ a {
     justify-content: flex-end;
 
     &.active {
+      border-bottom: 1px solid $border-color;
 
       .burger-icon {
         background-color: transparent;

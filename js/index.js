@@ -1,86 +1,63 @@
-// const ozi = document.querySelector('.ozitag');
-// const burger = document.querySelector('.ozitag__burger');
-// const navList = document.querySelector('.ozitag__navlist');
-//
-//
-// const iconDrop = document.querySelectorAll('.js-icon-drop');
-//
-// iconDrop.forEach(el => {
-//
-//     el.addEventListener('click', (event) => {
-//         openTab(el);
-//     })
-//
-// });
-//
-// function openTab(el) {
-//     let wrap = el.parentElement;
-//     let parentLi = wrap.parentElement;
-//     let ulDrop = wrap.nextElementSibling;
-//
-//     if (ulDrop.classList.contains('opened')) {
-//         parentLi.classList.remove('active');
-//         ulDrop.classList.remove('opened');
-//     } else {
-//         closeAllTab(parentLi);
-//         parentLi.classList.add('active');
-//         ulDrop.classList.add('opened');
-//     }
-// }
-//
-// function closeAllTab(el) {
-//
-//     const ulDropped = el.parentElement.querySelectorAll('.ul-drop.opened');
-//     const activeLi = el.parentElement.querySelectorAll('.dropdown.active');
-//
-//     activeLi.forEach(elem => {
-//         elem.classList.remove('active');
-//     })
-//
-//     ulDropped.forEach(elem => {
-//         elem.classList.remove('opened');
-//     });
-// }
-//
-// function bgCheck() {
-//     if (burger.classList.contains('active')) {
-//         ozi.classList.add('bg-res')
-//     } else {
-//         ozi.classList.remove('bg-res');
-//     }
-// }
-//
-// function checkBtn() {
-//     if (burger.classList.contains('active')) {
-//         navList.classList.add('show')
-//     } else {
-//         navList.classList.remove('show');
-//     }
-// }
-//
-// burger.addEventListener('click', () => {
-//     burger.classList.toggle('active');
-//     checkBtn();
-//     bgCheck();
-// })
+const ozi = document.getElementById('ozitag');
+const burger = document.getElementById('burger')
+const navWrap = document.getElementById('nav-wrap');
+const iconDrop = document.querySelectorAll('.js-icon-drop');
+const openedLists = document.querySelectorAll('.list.opened');
 
-const list = document.querySelectorAll('.list');
+iconDrop.forEach(el => {
 
-function accordion(e){
-    e.stopPropagation();
-    if(this.classList.contains('opened')){
-        this.classList.remove('opened');
-    }
-    else if(this.parentElement.parentElement.classList.contains('opened')){
-        this.classList.add('opened');
-    }
-    else{
-        for(i=0; i < list.length; i++){
-            list[i].classList.remove('opened');
-        }
-        this.classList.add('opened');
+    el.addEventListener('click', (event) => {
+        openTab(el);
+    })
+
+});
+
+function openTab(el) {
+    let parentLi = el.parentElement;
+
+    if (parentLi.classList.contains('opened')) {
+        parentLi.classList.remove('opened');
+    } else {
+        closeTab(parentLi);
+        parentLi.classList.add('opened');
     }
 }
-for(i = 0; i < list.length; i++ ){
-    list[i].addEventListener('click', accordion);
+
+function closeTab(el) {
+
+    const ulDropped = el.parentElement.querySelectorAll('.list.opened');
+
+    ulDropped.forEach(elem => {
+        elem.classList.remove('opened');
+    })
 }
+
+function closeAllTabs() {
+    console.log(openedLists);
+    openedLists.forEach(item => {
+        item.classList.remove('opened');
+    })
+}
+
+function bgCheck() {
+    if (burger.classList.contains('active')) {
+        ozi.classList.add('bg-res')
+    } else {
+        ozi.classList.remove('bg-res');
+    }
+}
+
+function checkBtn() {
+    if (burger.classList.contains('active')) {
+        navWrap.classList.add('opened')
+    } else {
+        navWrap.classList.remove('opened');
+    }
+}
+
+burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    checkBtn();
+    bgCheck();
+    closeAllTabs();
+})
