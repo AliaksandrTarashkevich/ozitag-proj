@@ -2,7 +2,6 @@ const ozi = document.getElementById('ozitag');
 const burger = document.getElementById('burger')
 const navWrap = document.getElementById('nav-wrap');
 const iconDrop = document.querySelectorAll('.js-icon-drop');
-const openedLists = document.querySelectorAll('.list.opened');
 
 iconDrop.forEach(el => {
 
@@ -33,8 +32,9 @@ function closeTab(el) {
 }
 
 function closeAllTabs() {
-    console.log(openedLists);
-    openedLists.forEach(item => {
+    const opened = document.querySelectorAll('.list.opened');
+
+    opened.forEach(item => {
         item.classList.remove('opened');
     })
 }

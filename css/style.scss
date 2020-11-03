@@ -105,8 +105,8 @@ a {
         content: "";
         position: absolute;
         top: 0;
-        left: 0;
-        width: 100%;
+        left: -50vw;
+        width: 138vw;
         height: 100vh;
         z-index: -1;
         background-color: $background-bg;
@@ -160,7 +160,7 @@ a {
 
   .item-2 {
     font-size: 18px;
-    padding: 0 3rem;
+    padding: 0 2.5rem;
 
     &:first-child {
       padding-left: 0;
