@@ -1,7 +1,11 @@
 const ozi = document.getElementById('ozitag');
 const burger = document.getElementById('burger')
 const navWrap = document.getElementById('nav-wrap');
+const menu = document.getElementById('menu');
 const iconDrop = document.querySelectorAll('.js-icon-drop');
+
+let navHeight = navWrap.getBoundingClientRect().top;
+console.log(navHeight);
 
 iconDrop.forEach(el => {
 
@@ -13,6 +17,17 @@ iconDrop.forEach(el => {
 
 function openTab(el) {
     let parentLi = el.parentElement;
+
+    // let elHeight = el.getBoundingClientRect().top + 30;
+    //
+    // menu.scrollTop = elHeight;
+    // console.log(menu.scrollTop);
+
+    // const y = el.getBoundingClientRect().top + menu.scrollY;
+    // menu.scroll({
+    //     top: y,
+    //     behavior: 'smooth'
+    // });
 
     if (parentLi.classList.contains('opened')) {
         parentLi.classList.remove('opened');

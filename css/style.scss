@@ -99,16 +99,16 @@ a {
     &.list {
 
       &:after {
+        content: "";
+        position: fixed;
         opacity: 0;
         max-height: 0;
-        transition: opacity .3s;
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -50vw;
-        width: 138vw;
-        height: 100vh;
         z-index: -1;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        transition: opacity .3s;
         background-color: $background-bg;
       }
 
@@ -216,8 +216,10 @@ a {
   }
 
   .nav-wrap {
-    display: block;
+    display: flex;
     position: absolute;
+    padding: 0 1rem;
+    justify-content: flex-end;
     width: 100%;
     border-bottom: 1px solid $border-color;
     box-shadow: 0 0 15px -1px grey;
@@ -234,12 +236,12 @@ a {
   .menu {
     display: block;
     opacity: 0;
-    position: unset;
+    position: absolute;
     background-color: $brand-white;
     overflow-y: auto;
     overflow-x: hidden;
     justify-content: flex-end;
-    top: 68px;
+    top: 76px;
     left: 0;
     width: 100%;
     transition: max-height .2s ease-in-out;
@@ -386,16 +388,14 @@ a {
 
   .burger {
     z-index: 10;
-    padding-right: 1rem;
     display: flex;
     cursor: pointer;
     align-items: center;
-    height: 76px;
-    width: 100%;
+    height: 40px;
+    width: 40px;
     justify-content: flex-end;
 
     &.active {
-      border-bottom: 1px solid $border-color;
 
       .burger-icon {
         background-color: transparent;
