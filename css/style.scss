@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Roboto-Medium';
   src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
-  url('../../fonts/Roboto-Medium.woff') format('woff');
+  url('../fonts/Roboto-Medium.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -9,8 +9,8 @@
 
 @font-face {
   font-family: 'Roboto-Regular';
-  src: url('../../fonts/Roboto-Regular.woff2') format('woff2'),
-  url('../../fonts/Roboto-Regular.woff') format('woff');
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
+  url('../fonts/Roboto-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -18,20 +18,20 @@
 
 /* Variables */
 
-$brand-1:                      #ff9c24;
-$brand-white:                  #ffffff;
-$brand-black:                  #000000;
-$text-color:                   #3d3d3d;
-$dropdown-bg:                  #f2f2f2;
-$background-bg:                rgba(0, 0, 0, 0.7);
-$border-color:                 #c2c2c2;
+$brand-1: #ff9c24;
+$brand-white: #ffffff;
+$brand-black: #000000;
+$text-color: #3d3d3d;
+$dropdown-bg: #f2f2f2;
+$background-bg: rgba(0, 0, 0, 0.7);
+$border-color: #c2c2c2;
 
-$screen-xs-max:                 480px;
-$screen-sm-max:                 768px;
-$screen-md-max:                 1024px;
-$screen-lg-max:                 1200px;
+$screen-xs-max: 480px;
+$screen-sm-max: 768px;
+$screen-md-max: 1024px;
+$screen-lg-max: 1200px;
 
-$container-max-width:           1276px;
+$container-max-width: 1276px;
 
 /* Global styles */
 
@@ -67,6 +67,13 @@ a {
 
 .ozitag {
   min-height: 100vh;
+
+  p {
+
+    &:not(:last-child) {
+      margin-bottom: 0.8rem;
+    }
+  }
 
   &.bg-res {
     background-color: $background-bg;

@@ -1,11 +1,8 @@
 const ozi = document.getElementById('ozitag');
 const burger = document.getElementById('burger')
 const navWrap = document.getElementById('nav-wrap');
-const menu = document.getElementById('menu');
 const iconDrop = document.querySelectorAll('.js-icon-drop');
-
-let navHeight = navWrap.getBoundingClientRect().top;
-console.log(navHeight);
+// const menu = document.getElementById('menu');
 
 iconDrop.forEach(el => {
 
@@ -18,7 +15,8 @@ iconDrop.forEach(el => {
 function openTab(el) {
     let parentLi = el.parentElement;
 
-    // let elHeight = el.getBoundingClientRect().top + 30;
+    // let navHeight = navWrap.getBoundingClientRect().top;
+    // let elHeight = el.getBoundingClientRect().top + - navHeight;
     //
     // menu.scrollTop = elHeight;
     // console.log(menu.scrollTop);
@@ -62,7 +60,7 @@ function bgCheck() {
     }
 }
 
-function checkBtn() {
+function btnCheck() {
     if (burger.classList.contains('active')) {
         navWrap.classList.add('opened')
     } else {
@@ -72,7 +70,7 @@ function checkBtn() {
 
 burger.addEventListener('click', () => {
     burger.classList.toggle('active');
-    checkBtn();
+    btnCheck();
     bgCheck();
     closeAllTabs();
 })
